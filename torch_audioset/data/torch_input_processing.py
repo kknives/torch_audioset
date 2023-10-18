@@ -40,6 +40,7 @@ class WaveformToInput(torch.nn.Module):
         '''
         x = waveform.mean(axis=0, keepdims=True)  # average over channels
         resampler = ta_trans.Resample(sample_rate, CommonParams.TARGET_SAMPLE_RATE)
+        # resampler.to(torch.device('cuda'))
         x = resampler(x)
         x = self.mel_trans_ope(x)
         x = x.squeeze(dim=0).T  # # [1, C, T] -> [T, C]
