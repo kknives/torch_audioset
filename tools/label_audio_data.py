@@ -8,11 +8,11 @@ from torch_audioset.engine import classify_audio_dataset
 # create a dummy dataset
 class DummyDset(torch.utils.data.Dataset):
     def __init__(self):
-        self.size = 100
+        self.size = 5
 
     @staticmethod
     def get_data():
-        num_secs = 1.5 * 60 * 60
+        num_secs = 15
         freq = 1000
         sample_rate = 44100
         t = np.linspace(0, num_secs, int(num_secs * sample_rate))
