@@ -8,7 +8,7 @@ from ..params import YAMNetParams
 
 __all__ = ['yamnet', 'yamnet_category_metadata']
 
-ckpt_url = "https://github.com/w-hc/torch_audioset/releases/download/v0.1/yamnet.pth"
+ckpt_path = "yamnet.pth"
 
 
 class Conv2d_tf(nn.Conv2d):
@@ -169,6 +169,5 @@ def yamnet_category_metadata():
 def yamnet(pretrained=True):
     model = YAMNet()
     if pretrained:
-        state_dict = hub.load_state_dict_from_url(ckpt_url, progress=True)
-        model.load_state_dict(state_dict)
+        model.load_state_dict(torch.load(ckpt_path, map_location=torch.device('cuda')))
     return model
